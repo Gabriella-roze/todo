@@ -1,0 +1,108 @@
+:root {
+    --menu-width: 80px;
+}
+
+body {
+}
+/* MENU */
+nav {
+    height: calc(100vh - 20px);
+    width: var(--menu-width);
+
+    padding: 10px 0px;
+
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #F5F5F5;
+    color: #49433E;
+    border-right: 0.5px solid #A6A4A4;
+}
+ul {
+    height: 40%;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+li {
+    list-style: none;
+    text-align: center;
+}
+li > a {
+    text-decoration: none;
+    color: #49433E;
+}
+li > h2 {
+    margin: 0;
+}
+nav > img {
+    width: 30px;
+}
+
+/* PAGE TIMELINE */
+#page__timeline {
+    min-height: 100vh;
+    width: calc(100% - var(--menu-width));
+
+    margin: 0 0 0 var(--menu-width);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    background-image: url(img/paper-texture.jpg);
+    background-repeat: repeat;
+
+}
+
+/* SECTIONS */
+section {
+    width: 330px;
+    min-height: 550px;
+
+    margin: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(73, 67, 62, 0.16);
+}
+
+.tasks__box {
+    min-height: 70%;
+}
+.toDo__box {
+    min-height: 30px;
+    width: calc(100% - 12px);
+
+    margin: 2px 10px;
+
+    display: flex;
+    align-items: center;
+    
+}
+.toDo__box p {
+    margin: 0;
+    padding-left: 8px;
+    
+}
+input[type="checkbox"] {
+    transform: scale(1.5);
+    transform-origin: center;
+
+    margin: 0 12px;
+
+}
