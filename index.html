@@ -10,6 +10,7 @@
     <title>To Do App</title>
 </head>
 <body>
+    <div class="loading-overlay"></div>
 
     <nav>
         <img src="img/calendar-check-solid.svg" alt="Logo image">
@@ -42,30 +43,31 @@
         
         </header>
         
-        <section>
+        <form id="form__today">
             <h1>Today</h1>
             <div class="tasks__box">
 
             </div>
-            <input type="text" placeholder="Add task">
-        </section>
+            <input type="text" placeholder="Add task" name="newToday" required>
+            <input type="submit" value="+" name="submit">
+        </form>
         
-        <section>
+        <form id="form__week">
             <h1>This Week</h1>
             <div class="tasks__box">
         
             </div>
-            <input type="text" placeholder="Add task">
-        </section>
+            <input type="text" placeholder="Add task" name="newWeek" required>
+        </form>
         
-        <section>
+        <form id="form__month">
             <h1>This month</h1>
             <div class="tasks__box">
                 
         
             </div>
-            <input type="text" placeholder="Add task">
-        </section>
+            <input type="text" placeholder="Add task" name="newMonth" required>
+        </form>
     </div>
    
     <template id="tpl__toDo">

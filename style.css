@@ -2,8 +2,19 @@
     --menu-width: 80px;
 }
 
+/* GENERAL */
 body {
 }
+.loading-overlay {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  height: 100vh;
+  width: 100vw;
+  
+  background-color: rgba(0, 0, 0, 0);
+}
+
 /* MENU */
 nav {
     height: calc(100vh - 20px);
@@ -65,10 +76,11 @@ nav > img {
 
 }
 
-/* SECTIONS */
-section {
+/* FORMS */
+form {
     width: 330px;
     min-height: 550px;
+    max-height: 70vh;
 
     margin: 20px;
 
