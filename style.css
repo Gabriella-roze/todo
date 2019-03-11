@@ -1,9 +1,26 @@
 :root {
     --menu-width: 80px;
+
+    --font-family-main: 'Roboto Condensed', sans-serif;
+    --font-family-accent: 'Playfair Display', serif;
+
+    --color-dark: #49433E;
+    --color-light: #D6CAC3;
 }
 
 /* GENERAL */
-body {
+h1 {
+    margin: 30px;
+    font-family: var(--font-family-main);
+    font-weight: 700;
+    font-size: 40px;
+    color:  var(--color-dark);
+    
+}
+p {
+    font-family: var(--font-family-main);
+    font-size: 16px;
+    color:  var(--color-dark);
 }
 .loading-overlay {
   display: none;
@@ -31,8 +48,8 @@ nav {
     align-items: center;
 
     background: #F5F5F5;
-    color: #49433E;
-    border-right: 0.5px solid #A6A4A4;
+    color: #D6CAC3;
+    border-right: 0.5px solid rgba(166, 164, 164, 0.4);
 }
 ul {
     height: 40%;
@@ -49,10 +66,12 @@ ul {
 li {
     list-style: none;
     text-align: center;
+    cursor: pointer;
 }
 li > a {
     text-decoration: none;
-    color: #49433E;
+    font-family: var(--font-family-main);
+    color: #D6CAC3;
 }
 li > h2 {
     margin: 0;
@@ -60,20 +79,25 @@ li > h2 {
 nav > img {
     width: 30px;
 }
+.active {
+    color: #49433E;
+}
 
 /* PAGE TIMELINE */
 #page__timeline {
     min-height: 100vh;
     width: calc(100% - var(--menu-width));
+    box-sizing: border-box;
 
     margin: 0 0 0 var(--menu-width);
+    padding: 20px 0 0 20px;
+
 
     display: flex;
     flex-wrap: wrap;
 
     background-image: url(img/paper-texture.jpg);
     background-repeat: repeat;
-
 }
 
 /* FORMS */
@@ -82,7 +106,7 @@ form {
     min-height: 550px;
     max-height: 70vh;
 
-    margin: 20px;
+    margin: 25px 0 25px 50px;
 
     display: flex;
     flex-direction: column;
@@ -91,6 +115,10 @@ form {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
     box-shadow: 0 8px 16px rgba(73, 67, 62, 0.16);
+    z-index: 1;
+}
+form div:nth-of-type(2) {
+    display: flex;
 }
 
 .tasks__box {
@@ -99,23 +127,55 @@ form {
 }
 .toDo__box {
     min-height: 30px;
-    width: calc(100% - 12px);
+    width: 85%;
 
     margin: 2px 10px;
 
     display: flex;
-    align-items: center;
-    
+    align-items: center; 
 }
 .toDo__box p {
     margin: 0;
-    padding-left: 8px;
-    
+    padding-left: 8px;  
 }
 input[type="checkbox"] {
-    transform: scale(1.5);
+    transform: scale(1.4);
     transform-origin: center;
 
     margin: 0 12px;
+}
+input[type="text"] {
+    height: 50px;
+    width: calc(85% - 30px);
 
+    padding-left: 30px;
+
+    background-color: var(--color-light);
+
+    border-radius: 0 0 0 5px;
+    outline: none;
+    border: none;
+}
+input[type="text"]::placeholder {
+    font-family: var(--font-family-main);
+    font-size: 16px;
+    color:  white;
+}
+input, textarea, select, button {
+    font-family: var(--font-family-main);
+    font-size: 20px;
+    color: var(--color-dark);
+}
+
+input[type="submit"] {
+    width: 15%;
+
+    background-color: var(--color-light);
+    color: white;
+    font-size: 18px;
+    
+    outline: none;
+    border: none;
+
+    border-radius: 0 0 5px 0;
 }
