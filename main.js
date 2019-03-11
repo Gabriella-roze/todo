@@ -37,10 +37,6 @@ async function init() {
     renderTodo(todos);
 };
 
-
-
-
-
 function renderTodo(todos) {
     todayParent.innerHTML = '';
     weekParent.innerHTML = '';
@@ -49,6 +45,15 @@ function renderTodo(todos) {
     todos.forEach(todo => {
         let tplClone = template.cloneNode(true);
         tplClone.querySelector("p").innerHTML = todo.task;
+        tplClone.querySelector(`input[type="checkbox"]`).addEventListener("click", (e) => {
+
+            if (e.target.ckecked == true) {
+                todo.isCompleted = false; 
+            } else {
+                todo.isCompleted = true;
+            }
+            updateTodo(todo);
+        } )
 
         if (todo.timeline === "today") {
             todayParent.appendChild(tplClone);
@@ -75,11 +80,6 @@ function getTodos(obj) {
     })
         .then(res => res.json())
 }
-
-
-
-
-
 
 btnSubmitToday.addEventListener("click", (e) => {
     e.preventDefault();
@@ -125,8 +125,14 @@ function deleteTodo(id) {
         .then(res => res.json())
 }
 
+
+
+function completeTodo() {
+
+}
+
 function updateTodo(todo) {
-    const url = config.dbUrl + '/' + todo.id;
+    const url = config.dbUrl + '/' + todo._id;
     const updatedTodo = { ...todo };
 
     delete updatedTodo._id;

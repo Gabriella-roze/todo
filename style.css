@@ -95,6 +95,7 @@ form {
 
 .tasks__box {
     min-height: 70%;
+    overflow: scroll;
 }
 .toDo__box {
     min-height: 30px;
