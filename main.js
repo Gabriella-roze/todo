@@ -1,4 +1,6 @@
 "use strict";
+import "babel-polyfill"
+// import interact from 'interactjs'
 
 const config = {
     dbUrl: 'https://testt-3690.restdb.io/rest/todo',
@@ -47,7 +49,101 @@ async function init() {
     loading.stop();
     console.log('todos: ', todos);
     renderTodo(todos);
+    renderTasksNr(todoToday, todoWeek, todoMonth, todoYear);
+    // setupDrag()
+    dragEventListeners()
 };
+
+const allParents = document.querySelectorAll(".tasks__box");
+
+let dragItem;
+let dragObj;
+
+function dragEventListeners() {
+    allParents.forEach(parent => {
+        parent.addEventListener('dragover', dragOver);
+        parent.addEventListener('dragenter', dragEnter);
+        parent.addEventListener('dragleave', dragLeave);
+        parent.addEventListener('drop', dragDrop);
+    });
+}
+
+//  SEARCH TODO
+
+function searchTodo(id) {
+    let todo = null;
+    todo = todoToday.find(elem => elem._id === id);
+
+    if (!todo) {
+        todo = todoWeek.find(elem => elem._id === id);
+    }
+    if (!todo) {
+        todo = todoMonth.find(elem => elem._id === id);
+    }
+    if (!todo) {
+        todo = todoYear.find(elem => elem._id === id);
+    }
+    return todo;
+}
+
+// drag functions
+function dragStart(e) {
+    console.log("start", e);
+
+    dragItem = e.target;
+    dragObj = searchTodo(e.target.dataset.todoid);
+
+    this.className += ' hold';
+    setTimeout(() => (this.classList.add('invisible')), 0);
+}
+
+function dragEnd() {
+    console.log("end", this);
+    this.classList.remove("hold");
+    this.classList.remove("invisible");
+
+      
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function dragEnter(e) {
+    console.log("enter");
+    e.preventDefault();
+    this.className += ' hovered';
+}
+
+function dragLeave() {
+    console.log("leave");
+    this.classList.remove("hovered");
+}
+
+function dragDrop(e) {
+    console.log("--> drop", e);
+    this.classList.remove("hovered");
+    this.appendChild(dragItem);
+
+    dragObj.timeline = this.dataset.timeline;
+    updateTodo(dragObj);
+}
+
+function renderTasksNr(todoToday, todoWeek, todoMonth, todoYear) {
+
+    todoToday.length === 1 
+        ? document.getElementById("todayTasks").innerHTML = todoToday.length + " task " 
+        : document.getElementById("todayTasks").innerHTML = todoToday.length + " tasks "
+    todoWeek.length === 1
+        ? document.getElementById("weekTasks").innerHTML = todoWeek.length + " task "
+        : document.getElementById("weekTasks").innerHTML = todoWeek.length + " tasks "
+    todoMonth.length === 1
+        ? document.getElementById("monthTasks").innerHTML = todoMonth.length + " task "
+        : document.getElementById("monthTasks").innerHTML = todoMonth.length + " tasks "
+    todoYear.length === 1
+        ? document.getElementById("yearTasks").innerHTML = todoYear.length + " task "
+        : document.getElementById("yearTasks").innerHTML = todoYear.length + " tasks "
+}
 
 function renderTodo(todos) {
     todayParent.innerHTML = '';
@@ -58,15 +154,20 @@ function renderTodo(todos) {
     todos.forEach(todo => {
         let tplClone = template.cloneNode(true);
         tplClone.querySelector("p").innerHTML = todo.task;
-        tplClone.querySelector(`input[type="checkbox"]`).addEventListener("click", (e) => {
+        tplClone.querySelector('.toDo__box').dataset.todoid = todo._id;
 
+        tplClone.querySelector(`input[type="checkbox"]`).addEventListener("click", (e) => {
             if (e.target.ckecked == true) {
                 todo.isCompleted = false; 
             } else {
                 todo.isCompleted = true;
             }
             updateTodo(todo);
-        } )
+        })
+
+        // Add dragability event listeners
+        tplClone.querySelector('.toDo__box').addEventListener('dragstart', dragStart);
+        tplClone.querySelector('.toDo__box').addEventListener('dragend', dragEnd);
 
         if (todo.timeline === "today") {
             todayParent.appendChild(tplClone);
@@ -149,15 +250,10 @@ function addNewTask(timeline) {
         formYear.elements.newYear.value = "";
     }
     
-   
     console.log("New Todo", newTodo);
     postTodo(newTodo)
         .then(res => init())
 }
-
-
-
-
 
 
 function postTodo(todo) {
@@ -187,12 +283,6 @@ function deleteTodo(id) {
         }
     })
         .then(res => res.json())
-}
-
-
-
-function completeTodo() {
-
 }
 
 function updateTodo(todo) {

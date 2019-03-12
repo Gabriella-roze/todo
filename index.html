@@ -41,14 +41,20 @@
     <div id="page__timeline">
 
         <header>
-        
+            
         </header>
-        
-        <form id="form__today">
-            <h1>Today</h1>
-            <div class="tasks__box">
 
-            </div>
+        <!-- TODAY -->
+        <form id="form__today">
+            <section>
+                <h1>Today</h1>
+                <p class="text__details margin-30">You have:<br /><span id="todayTasks"></span></p>    
+            </section>
+            
+            <section class="divider"></section>
+
+            <div class="tasks__box" data-timeline="today"></div>
+            
             <div>
                 <input type="text" placeholder="Add task" name="newToday" required>
                 <input type="submit" value="+" name="submit">
@@ -56,9 +62,17 @@
 
         </form>
         
+        <!-- THIS WEEK -->
         <form id="form__week">
-            <h1>This Week</h1>
-            <div class="tasks__box">
+            <section>
+                <h1>This Week</h1>
+                <p class="text__details margin-30">You have:<br /><span id="weekTasks"></span></p>
+            </section>
+            
+
+            <section class="divider"></section>
+
+            <div class="tasks__box" data-timeline="week">
         
             </div>
             <div>
@@ -66,10 +80,18 @@
                 <input type="submit" value="+" name="submit">
             </div>
         </form>
-        
+
+        <!-- THIS MONTH -->
         <form id="form__month">
-            <h1>This Month</h1>
-            <div class="tasks__box">
+            <section>
+                <h1>This Month</h1>
+                <p class="text__details margin-30">You have:<br /><span id="monthTasks"></span></p>
+            </section>
+            
+
+            <section class="divider"></section>
+
+            <div class="tasks__box" data-timeline="month">
                 
         
             </div>
@@ -79,10 +101,16 @@
             </div>
         </form>
 
+        <!-- THIS YEAR -->
         <form id="form__year">
-            <h1>This Year</h1>
-            <div class="tasks__box">
-        
+            <section>
+                <h1>This Year</h1>
+                <p class="text__details margin-30">You have:<br /><span id="yearTasks"></span></p>
+            </section>
+            
+            <section class="divider"></section>
+
+            <div class="tasks__box" data-timeline="year">
         
             </div>
             <div>
@@ -93,7 +121,7 @@
     </div>
    
     <template id="tpl__toDo">
-        <div class="toDo__box">
+        <div class="toDo__box" draggable="true">
             <input type="checkbox" name="toDo__status">
             <p></p>
         </div>
