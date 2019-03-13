@@ -1,5 +1,5 @@
 "use strict";
-import "babel-polyfill"
+// import "babel-polyfill"
 // import interact from 'interactjs'
 
 const config = {
@@ -89,7 +89,7 @@ function searchTodo(id) {
 // drag functions
 function dragStart(e) {
     console.log("start", e);
-
+    e.dataTransfer.dropEffect = "move";
     dragItem = e.target;
     dragObj = searchTodo(e.target.dataset.todoid);
 
@@ -101,8 +101,6 @@ function dragEnd() {
     console.log("end", this);
     this.classList.remove("hold");
     this.classList.remove("invisible");
-
-      
 }
 
 function dragOver(e) {
