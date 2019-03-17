@@ -9,6 +9,10 @@
 }
 
 /* GENERAL */
+body {
+        background-image: url(img/paper-texture-pink.jpg);
+    background-repeat: repeat;
+}
 h1 {
     margin: 30px;
     font-family: var(--font-family-main);
@@ -49,6 +53,10 @@ section {
     margin-bottom: 30px;
 
     background-color: var(--color-light);
+}
+.spacer {
+    min-width: 50px;
+    height: 600px;
 }
 
 /* MENU */
@@ -105,37 +113,56 @@ nav > img {
     font-size: 12px;
     text-align: right;
 }
+#img__logo {
+    cursor: pointer;
+}
+
+/* HEADER */
+header {
+    box-sizing: border-box;
+    width: 100%;
+
+    padding-left: 100px;
+
+    
+}
+
 
 /* PAGE TIMELINE */
 #page__timeline {
-    min-height: 100vh;
-    width: calc(100% - var(--menu-width));
     box-sizing: border-box;
+    height: 90vh;
+    width: auto;
+    /* width: calc(100% - var(--menu-width)); */
 
     margin: 0 0 0 var(--menu-width);
-    padding: 20px 0 0 20px;
+    padding: 20px 100px 100px 50px;
+
+    overflow-x: scroll;
 
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 
-    background-image: url(img/paper-texture.jpg);
-    background-repeat: repeat;
+    /* background-image: url(img/paper-texture-pink.jpg);
+    background-repeat: repeat; */
 }
 
 /* FORMS */
 form {
-    width: 330px;
-    min-height: 550px;
-    max-height: 70vh;
+    min-width: 330px;
+    height: 600px;
 
-    margin: 25px 0 25px 50px;
+    margin: 25px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     
-    background: rgba(255, 255, 255, 0.8);
+    /* background: rgba(255, 255, 255, 0.8); */
+    background-image: url(img/paper-texture.jpg);
+    background-size: contain;
+
     border-radius: 5px;
     box-shadow: 0 8px 16px rgba(73, 67, 62, 0.16);
     z-index: 1;
@@ -212,12 +239,13 @@ input[type="submit"] {
 
 /* DRAG AND DROP */
 .hold {
-  border:3px solid hotpink;
-  border-radius: 5px;
+    border:1px solid hotpink;
+    border-radius: 5px;
 }
 .hovered {
-  border: 2px dashed hotpink;
+    /* border: 2px dashed hotpink; */
+    box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.6);
 }
 .invisible {
-  display: none;
+    opacity: 0.3;
 }

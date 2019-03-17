@@ -1,7 +1,6 @@
 "use strict";
-// import "babel-polyfill"
-// import interact from 'interactjs'
-
+import "babel-polyfill"
+ 
 const config = {
     dbUrl: 'https://testt-3690.restdb.io/rest/todo',
     dbKey: '5c7fe52ecac6621685acbc04'
@@ -10,6 +9,8 @@ const loading = {
     start: () => document.querySelector('.loading-overlay').style.display = 'initial',
     stop: () => document.querySelector('.loading-overlay').style.display = 'none',
 };
+
+const logo = document.getElementById("img__logo");
 
 const formToday = document.querySelector("#form__today");
 const formWeek = document.querySelector("#form__week");
@@ -35,6 +36,7 @@ let todoYear = [];
 
 // INIT
 window.addEventListener("load", init());
+logo.addEventListener('click', () => window.location.href = "index.html");
 
 async function init() {
     console.log('Init...');
