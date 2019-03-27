@@ -1,10 +1,10 @@
 "use strict";
-import "babel-polyfill"
+// import "babel-polyfill"
  
 const config = {
-    dbUrl: 'https://testt-3690.restdb.io/rest/todo',
-    dbKey: '5c7fe52ecac6621685acbc04'
-}
+  dbUrl: "https://testt-3690.restdb.io/rest/todo",
+  dbKey: "5c7fe52ecac6621685acbc04"
+};
 const loading = {
     start: () => document.querySelector('.loading-overlay').style.display = 'initial',
     stop: () => document.querySelector('.loading-overlay').style.display = 'none',
